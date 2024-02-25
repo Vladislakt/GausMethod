@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿#include <fstream>
+#include <iostream>
 #include <list>
 using  namespace std;
 
@@ -48,23 +49,32 @@ bool contains(list<int> Indexes, int index) {
 
 int main()
 {
-    int n = 2, m = 5;
+    //чтение
+    ifstream fin("input.txt");
+    int n, m;
+    fin >> n >> m;
     double** M;
-    M = new double*[n];
+    M = new double* [n];
     for (int i = 0; i < n; i++) {
         M[i] = new double[m];
     }
-    M[0][0] = 1; M[0][1] = 2; M[0][2] = 5; M[0][3] = -1; M[0][4] = 1;
-    M[1][0] = 1; M[1][1] = -1; M[1][2] = -1; M[1][3] = 2; M[1][4] = 1;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            fin >> M[i][j];
+        }
+    }
     list<int> Indexes;
-    Indexes.push_front(1);
-    Indexes.push_front(2);
+    int index;
+    fin >> index;
+    Indexes.push_front(index);
+    fin >> index;
+    Indexes.push_front(index);
+    fin.close();
 
     printMatrix(M, n, m);
     cout << "-----------------------------" << endl;
 
     double mn;
-
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             if (contains(Indexes, j)) {
