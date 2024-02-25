@@ -1,4 +1,5 @@
 ﻿#include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <list>
 using  namespace std;
@@ -6,7 +7,7 @@ using  namespace std;
 void printMatrix(double** M, int n, int m) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            cout << M[i][j] << " ";
+            cout << setw(10) << M[i][j] << " ";
         }
         cout << endl;
     }
@@ -51,7 +52,7 @@ void printMatrixToTxt(double** M, int n, int m) {
     ofstream fout("output.txt");
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            fout << M[i][j] << " ";
+            fout << setw(10) << M[i][j] << " ";
         }
         fout << endl;
     }
@@ -82,10 +83,7 @@ int main()
     fin >> index;
     Indexes.push_front(index);
     fin.close();
-
-    printMatrix(M, n, m);
-    cout << "-----------------------------" << endl;
-
+    //Метод Гаусса
     double mn;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
@@ -113,9 +111,7 @@ int main()
             }            
         }
     }
-    printMatrix(M, n, m);
     //запись
     printMatrixToTxt(M, n, m);
     return 0;
 }
-
