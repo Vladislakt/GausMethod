@@ -47,6 +47,18 @@ bool contains(list<int> Indexes, int index) {
     return false;
 }
 
+void printMatrixToTxt(double** M, int n, int m) {
+    ofstream fout("output.txt");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            fout << M[i][j] << " ";
+        }
+        fout << endl;
+    }
+    fout.close();
+    return;
+}
+
 int main()
 {
     //чтение
@@ -102,6 +114,8 @@ int main()
         }
     }
     printMatrix(M, n, m);
+    //запись
+    printMatrixToTxt(M, n, m);
     return 0;
 }
 
