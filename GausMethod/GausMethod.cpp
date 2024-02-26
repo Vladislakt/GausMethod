@@ -66,6 +66,36 @@ void printMatrixToTxt(double** M, int n, int m) {
     return;
 }
 
+void GausMethod(double** M, int n, int m, list<int> Indexes) {
+    double mn;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (contains(Indexes, j)) {
+                continue;
+            }
+            else {
+
+
+                if (M[i][j] != 0) {
+                    mn = M[i][j];
+                    for (int k = 0; k < m; k++) {
+                        M[i][k] = M[i][k] / mn;
+                    }
+                    for (int k = 0; k < n; k++) {
+                        if (k != i) {
+                            mn = M[k][j];
+                            for (int l = 0; l < m; l++) {
+                                M[k][l] = M[k][l] - mn * M[i][l];
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }
+}
+
 int main()
 {
     //чтение
@@ -91,33 +121,7 @@ int main()
     fin.close();
     Indexes.push_front(m);//индекс последнего столбика
     //Метод Гаусса
-    double mn;
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            if (contains(Indexes, j)) {
-                continue;
-            }
-            else {
-
-
-                if (M[i][j] != 0) {
-                    mn = M[i][j];
-                    for (int k = 0; k < m; k++) {
-                        M[i][k] = M[i][k] / mn;
-                    }
-                    for (int k = 0; k < n; k++) {
-                        if (k != i) {
-                            mn = M[k][j];
-                            for (int l = 0; l < m; l++) {
-                                M[k][l] = M[k][l] - mn * M[i][l];
-                            }
-                        }
-                    }
-                    break;
-                }
-            }            
-        }
-    }
+    GausMethod(M, n, m, Indexes);
     //запись
     printMatrixToTxt(M, n, m);
     return 0;
