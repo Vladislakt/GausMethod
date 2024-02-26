@@ -99,10 +99,11 @@ void GausMethod(double** M, int n, int m, list<int> Indexes) {
 int main()
 {
     //чтение
-    ifstream fin("input.txt");
     int n, m;
+    double **M;
+    list<int> Indexes;
+    ifstream fin("input.txt");
     fin >> n >> m;
-    double** M;
     M = new double* [n];
     for (int i = 0; i < n; i++) {
         M[i] = new double[m];
@@ -112,7 +113,6 @@ int main()
             fin >> M[i][j];
         }
     }
-    list<int> Indexes;
     int index;
     fin >> index;
     Indexes.push_front(index);
