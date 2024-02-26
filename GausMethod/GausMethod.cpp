@@ -8,6 +8,9 @@ void printMatrix(double** M, int n, int m) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             cout << setw(10) << M[i][j] << " ";
+            if (j == m - 2) {
+                cout << "|";
+            }
         }
         cout << endl;
     }
@@ -53,6 +56,9 @@ void printMatrixToTxt(double** M, int n, int m) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             fout << setw(10) << M[i][j] << " ";
+            if (j == m - 2) {
+                fout << "|";
+            }
         }
         fout << endl;
     }
