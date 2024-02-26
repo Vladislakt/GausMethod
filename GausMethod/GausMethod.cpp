@@ -89,6 +89,7 @@ int main()
     fin >> index;
     Indexes.push_front(index);
     fin.close();
+    Indexes.push_front(m);//индекс последнего столбика
     //Метод Гаусса
     double mn;
     for (int i = 0; i < n; i++) {
